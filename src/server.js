@@ -1,8 +1,9 @@
 import express from "express";
 import listEndpoints from "express-list-endpoints";
-import postsRouter from "./services/posts/index.js";
 import mongoose from "mongoose";
 
+import postsRouter from "./services/posts/index.js";
+import commentsRouter from "./services/comments/index.js";
 const server = express();
 
 const port = process.env.PORT || 3001;
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3001;
 server.use(express.json());
 
 server.use("/posts", postsRouter);
+server.use("/comments", commentsRouter);
 
 console.table(listEndpoints(server));
 

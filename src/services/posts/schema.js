@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { CommentSchema } from "../comments/schema.js";
 const { Schema, model } = mongoose;
 
 const PostSchema = new Schema(
@@ -37,6 +37,7 @@ const PostSchema = new Schema(
       },
     },
     content: { type: String, required: true },
+    comments: [CommentSchema],
   },
   {
     timestamps: true,
