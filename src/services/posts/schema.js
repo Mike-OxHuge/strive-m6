@@ -37,3 +37,5 @@ const PostSchema = new Schema(
 );
 
 export default model("Post", PostSchema);
+
+// { type: Schema.Types.ObjectId, required: true, ref: "Author" }
