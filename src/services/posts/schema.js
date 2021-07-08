@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { CommentSchema } from "../comments/schema.js";
+import { AuthorSchema } from "../authors/schema.js";
 const { Schema, model } = mongoose;
 
 const PostSchema = new Schema(
@@ -26,16 +27,7 @@ const PostSchema = new Schema(
         required: true,
       },
     },
-    author: {
-      name: {
-        type: String,
-        required: true,
-      },
-      avatar: {
-        type: String,
-        required: true,
-      },
-    },
+    author: [AuthorSchema],
     content: { type: String, required: true },
     comments: [CommentSchema],
   },

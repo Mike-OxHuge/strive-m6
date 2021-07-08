@@ -1,19 +1,11 @@
 import mongoose from "mongoose";
+import { AuthorSchema } from "../authors/schema.js";
 
 const { Schema, model } = mongoose;
 
 export const CommentSchema = new Schema(
   {
-    author: {
-      name: {
-        type: String,
-        required: true,
-      },
-      avatar: {
-        type: String,
-        required: true,
-      },
-    },
+    author: [AuthorSchema],
     rate: {
       type: Number,
       min: 1,
