@@ -31,8 +31,8 @@ const models = {
   pool: pool,
 };
 
-models.Author.hasMany(models.Post);
-models.Post.belongsTo(models.Author);
+models.Author.hasMany(models.Post, { foreignKey: "author_id " });
+models.Post.belongsTo(models.Author, { foreignKey: "author_id " });
 models.Author.belongsToMany(models.Post, {
   through: { model: models.AuthorPost, unique: false, timestamps: false },
 });

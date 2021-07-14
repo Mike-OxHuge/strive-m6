@@ -31,10 +31,6 @@ export default (sequelize, DataTypes) => {
       author_id: {
         type: DataTypes.TEXT,
         allowNull: false,
-        references: {
-          model: Author,
-          key: "id",
-        },
       },
       content: {
         type: DataTypes.TEXT,

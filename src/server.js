@@ -20,8 +20,8 @@ const port = process.env.PORT || 5000;
 db.sequelize
   .sync({ force: true, alter: true })
   .then(() => {
-    app.listen(port, () => console.log("server is running: " + port));
-    app.on("error", (error) =>
+    server.listen(port, () => console.log("server is running: " + port));
+    server.on("error", (error) =>
       console.info(" ❌ Server is not running due to : ", error)
     );
   })
