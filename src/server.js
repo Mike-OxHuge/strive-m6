@@ -18,7 +18,7 @@ server.use("/api", services);
 const port = process.env.PORT || 5000;
 
 db.sequelize
-  .sync({ force: true, alter: true })
+  .sync({ force: true, alter: false })
   .then(() => {
     server.listen(port, () => console.log("server is running: " + port));
     server.on("error", (error) =>

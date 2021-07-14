@@ -39,7 +39,7 @@ export default (sequelize, DataTypes) => {
       created_at: {
         type: "TIMESTAMP",
         defaultValue: sequelize.NOW,
-        allowNull: false,
+        allowNull: true,
       },
     },
     { timestamps: false }

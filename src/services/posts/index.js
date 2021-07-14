@@ -1,15 +1,17 @@
 import { Router } from "express";
-import * as db from "../../lib/db/index.js";
+import sequelize from "sequelize";
+import models from "../../lib/db/index.js";
 
+const { Post } = models;
+const { Op } = sequelize;
 const router = Router();
 
 router
   .route("/")
   .get(async (_req, res, next) => {
     try {
-      const query = `SELECT * FROM posts`;
-      const result = await db.query(query);
-      res.send(result.rows);
+      const data = await Post.findAll();
+      res.send(data);
     } catch (error) {
       console.log(error);
       next(error);
@@ -17,19 +19,8 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      const query = `INSERT INTO posts
-                        (category, title, cover, read_time_value, read_time_unit, author_id, content)
-                            VALUES
-                    ('${req.body.category}',
-                        '${req.body.title}',
-                        '${req.body.cover}',
-                        ${parseInt(req.body.read_time_value)}, 
-                        '${req.body.read_time_unit}', 
-                        ${parseInt(req.body.author_id)},
-                        '${req.body.content}')`;
-      //   console.log(query);
-      const result = await db.query(query);
-      res.send(result.rows);
+      const data = await Post.create(req.body);
+      res.send(data);
     } catch (error) {
       console.log(error);
       next(error);
@@ -76,5 +67,4 @@ router
       next(error);
     }
   });
-
 export default router;
