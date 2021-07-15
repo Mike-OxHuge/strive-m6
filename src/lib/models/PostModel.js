@@ -12,7 +12,7 @@ const Post = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    category: {
+    category_name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

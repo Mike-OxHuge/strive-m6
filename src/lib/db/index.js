@@ -43,20 +43,26 @@
 // ---
 import Author from "../models/AuthorModel.js";
 import Post from "../models/PostModel.js";
-// import Category from "./models/category.js";
-import AuthorPost from "../models/AuthorPost.js";
+import Category from "../models/CategoryModel.js";
+import Comment from "../models/CommentModel.js";
 import sequelize from "../models/index.js";
 
 Author.hasMany(Post, { foreignKey: "author_id" });
 Post.belongsTo(Author, { foreignKey: "author_id" });
 
-Post.belongsToMany(Author, { through: { model: AuthorPost, unique: false } });
-Author.belongsToMany(Post, { through: { model: AuthorPost, unique: false } });
+Post.hasOne(Category, { foreignKey: "category_name" });
+Category.belongsTo(Post, { foreignKey: "category_name" });
 
-Author.hasMany(AuthorPost);
-AuthorPost.belongsTo(Author);
+Comment.hasOne(Author, { foreignKey: "author_id" });
+Comment.belongsTo(Post, { foreignKey: "post_id" });
 
-Author.hasMany(AuthorPost);
-AuthorPost.belongsTo(Author);
+// Post.belongsToMany(Author, { through: { model: AuthorPost, unique: false } });
+// Author.belongsToMany(Post, { through: { model: AuthorPost, unique: false } });
 
-export { Author, sequelize, Post, AuthorPost };
+// Author.hasMany(AuthorPost);
+// AuthorPost.belongsTo(Author);
+
+// Author.hasMany(AuthorPost);
+// AuthorPost.belongsTo(Author);
+
+export { Author, sequelize, Post, Category, Comment };

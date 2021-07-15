@@ -3,15 +3,19 @@ import s from "sequelize";
 
 const { DataTypes } = s;
 
-const AuthorPost = sequelize.define(
-  "authorPost",
+const Category = sequelize.define(
+  "category",
   {
-    id: {
+    category_id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
+    },
+    text: {
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
   },
   { timestamps: false }
 );
-export default AuthorPost;
+export default Category;
