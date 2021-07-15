@@ -1,51 +1,49 @@
 import Author from "./AuthorModel.js";
-export default (sequelize, DataTypes) => {
-  const Post = sequelize.define(
-    "post",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      category: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      title: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      cover: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      read_time_value: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      read_time_unit: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      author_id: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      content: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      created_at: {
-        type: "TIMESTAMP",
-        defaultValue: sequelize.NOW,
-        allowNull: true,
-      },
+import sequelize from "./index.js";
+import s from "sequelize";
+
+const { DataTypes } = s;
+
+const Post = sequelize.define(
+  "post",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    { timestamps: false }
-  );
-  return Post;
-};
+    category: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    cover: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    read_time_value: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    read_time_unit: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    author_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+  },
+  { timestamps: true }
+);
+export default Post;
 
 // {
 //     "id": 1,

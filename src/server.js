@@ -1,10 +1,11 @@
 import express from "express";
-import listEndpoints from "express-list-endpoints";
+// import listEndpoints from "express-list-endpoints";
 import cors from "cors";
-import postsRouter from "./services/posts/index.js";
-import authorsRouter from "./services/authors/index.js";
+// import postsRouter from "./services/posts/index.js";
+// import authorsRouter from "./services/authors/index.js";
 import services from "./services/index.js";
-import db from "./lib/db/index.js";
+import { sequelize } from "./lib/db/index.js";
+// import db from "./lib/db/index.js";
 
 const server = express();
 
@@ -17,8 +18,8 @@ server.use("/api", services);
 
 const port = process.env.PORT || 5000;
 
-db.sequelize
-  .sync({ force: true, alter: false })
+sequelize
+  .sync({ force: true, alter: true })
   .then(() => {
     server.listen(port, () => console.log("server is running: " + port));
     server.on("error", (error) =>
